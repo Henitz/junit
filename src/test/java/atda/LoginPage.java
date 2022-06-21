@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+
 public class LoginPage extends BasePage{
 
 
@@ -28,20 +29,40 @@ public class LoginPage extends BasePage{
         driver.findElement(By.id("btnPesquisar")).click();
 
 
+        String textSql = driver.findElement(By.id("codigoSql")).getText();
+        String textValor = driver.findElement(By.id("valorSql")).getText();
+        String textEndereco = driver.findElement(By.id("nomeEndereco")).getText();
 
 
-        WebElement sql = driver.findElement(By.id("codigoSql"));
-        String textSql =  sql.getAttribute("value");
+//        WebElement sql = driver.findElement(By.id("codigoSql"));
+//        String textSql =  sql.getAttribute("value");
 
-        WebElement valor = driver.findElement(By.id("valorSql"));
-        String textValor = valor.getAttribute("value");
-
-        WebElement endereco = driver.findElement(By.id("nomeEndereco"));
-        String textEndereco = endereco.getAttribute("value");
+//        WebElement valor = driver.findElement(By.id("valorSql"));
+//        String textValor = valor.getAttribute("value");
+//
+//        WebElement endereco = driver.findElement(By.id("nomeEndereco"));
+//        String textEndereco = endereco.getAttribute("value");
 
         System.out.println("SQL = " + textSql);
         System.out.println("Valor = " + textValor);
         System.out.println("Endereco = " + textEndereco);
+
+        String setor = textSql.substring(0,3);
+        System.out.println("setor = " + setor);
+
+        String quadra = textSql.substring(4,7);
+        System.out.println("quadra = " + quadra);
+
+        String lote = textSql.substring(8, 12);
+        System.out.println("lote = " + lote);
+
+        String digito = textSql.substring(13, 14);
+        System.out.println("digito = " + digito);
+
+        textValor = textValor.replace(".", "");
+        textValor = textValor.replace(",", ".");
+
+        System.out.println("Valor = " + textValor);
 
     }
 
