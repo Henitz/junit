@@ -10,11 +10,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class LoginPage extends BasePage{
 
 
-    public LoginPage(WebDriver driver) {
-        super(driver);
+    public LoginPage(WebDriver driver, WebDriver busca) {
+        super(driver, busca);
+
     }
 
-    public void open() { driver.get("https://itbi.prefeitura.sp.gov.br/valorreferencia/tvm/frm_tvm_consulta_valor.aspx");}
+    public void open() {
+        busca.get("http://localhost:8080");
+        driver.get("https://itbi.prefeitura.sp.gov.br/valorreferencia/tvm/frm_tvm_consulta_valor.aspx");}
 
     public boolean isLoaded() {
         return wait.until(ExpectedConditions.presenceOfElementLocated(By.id("txt_setor"))).isDisplayed();
@@ -28,7 +31,9 @@ public class LoginPage extends BasePage{
 
         driver.findElement(By.id("btnPesquisar")).click();
 
+        String buscaSetor = busca.findElement(By.id("setor")).getText();
 
+        System.out.println(buscaSetor + " #######");
         String textSql = driver.findElement(By.id("codigoSql")).getText();
         String textValor = driver.findElement(By.id("valorSql")).getText();
         String textEndereco = driver.findElement(By.id("nomeEndereco")).getText();

@@ -12,6 +12,7 @@ import static org.junit.Assert.assertTrue;
 
 public class AcceptanceTestDrivenAutomationTest {
     WebDriver driver;
+    WebDriver busca;
     //This method will run once before all of the tests in our class
     @BeforeClass
     public static void setupClass() {
@@ -21,7 +22,9 @@ public class AcceptanceTestDrivenAutomationTest {
     public void setup()
     {
         driver = getDriver();
+        busca = getDriver();
     }
+
     @After
     public void cleanup()
     {
@@ -30,7 +33,8 @@ public class AcceptanceTestDrivenAutomationTest {
     @Test
     public void shouldOpen()
     {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(driver, busca);
+
         loginPage.open();
         assertTrue(loginPage.isLoaded());
     }
@@ -38,12 +42,12 @@ public class AcceptanceTestDrivenAutomationTest {
     @Test
     public void shouldLogin()
     {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(driver, busca);
         loginPage.open();
         assertTrue(loginPage.isLoaded());
 
         loginPage.login("128", "162", "0050", "6", "02/06/2022");
-        assertTrue(new ProductsPage(driver).isLoaded());
+        assertTrue(new ProductsPage(driver, busca).isLoaded());
     }
 
     private WebDriver getDriver() {

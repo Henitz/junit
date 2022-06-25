@@ -5,8 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ProductsPage extends BasePage{
-    public ProductsPage(WebDriver driver) {
-        super(driver);
+    public ProductsPage(WebDriver driver, WebDriver busca) {
+        super(driver, busca);
     }
 
     public boolean isLoaded() {
